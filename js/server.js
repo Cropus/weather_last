@@ -13,7 +13,6 @@ const connection = mysql.createConnection({
     database: "fav",
     password: "password"
 });
-
 connection.connect(function(err){
     if (err) {
         return console.error("Ошибка: " + err.message);
@@ -29,63 +28,6 @@ function insert(id, city) {
             if (err) console.error(err);
         });
 }
-
-http.createServer(function(request,response){
-    let urlRequest = url.parse(request.url, true);
-    response.setHeader('Access-Control-Allow-Origin', '*');
-    response.setHeader('Access-Control-Allow-Headers', '*');
-    response.setHeader('Access-Control-Allow-Methods', '*');
-    switch (urlRequest.pathname) {
-        case "/weather/city":
-            switch (request.method) {
-                case "GET":
-                    let city = JSON.parse(JSON.stringify(urlRequest.query)).q;
-                    getByCity(city, response);
-                    break;
-                case "POST":
-                    let postCity = JSON.parse(JSON.stringify(urlRequest.query)).q;
-                    favCity(postCity, response);
-                    break;
-            }
-            break;
-        case "/weather/coordinates":
-            let lat = JSON.parse(JSON.stringify(urlRequest.query)).lat;
-            let lon = JSON.parse(JSON.stringify(urlRequest.query)).lon;
-            getByCoords(lat, lon, response);
-            break;
-        case "/favorites":
-            switch (request.method) {
-                case "GET":
-                    connection.query(GET,
-                        function(err, results) {
-                            if (err) console.error(err);
-                            console.log(results);
-                            response.write(JSON.stringify(results));
-                            response.end();
-                        });
-                    break;
-                case "POST":
-                    let newCity = JSON.parse(JSON.stringify(urlRequest.query)).q;
-                    update(newCity, response);
-                    break;
-                default:
-                    let oldCity = JSON.parse(JSON.stringify(urlRequest.query)).q;
-                    connection.query(DELETE, [oldCity],
-                        function(err, results) {
-                            if (err) console.error(err);
-                            response.write(JSON.stringify(results));
-                            response.end();
-                        });
-                    break;
-            }
-            break;
-    }
-
-}).listen(3000, "localhost",function(){
-    console.log("Сервер начал прослушивание запросов на порту 3000");
-});
-
-
 function update (city, response) {
     fetch(encodeURI(`https://community-open-weather-map.p.rapidapi.com/weather?q=${city}&units=metric`), {
         "method": "GET",
@@ -231,3 +173,57 @@ const getByCoords = (latitude, longitude, response) => {
         });
 
 }
+
+http.createServer(function(request,response){
+    let urlRequest = url.parse(request.url, true);
+    response.setHeader('Access-Control-Allow-Origin', '*');
+    response.setHeader('Access-Control-Allow-Headers', '*');
+    response.setHeader('Access-Control-Allow-Methods', '*');
+    switch (urlRequest.pathname) {
+        case "/weather/city":
+            switch (request.method) {
+                case "GET":
+                    let city = JSON.parse(JSON.stringify(urlRequest.query)).q;
+                    getByCity(city, response);
+                    break;
+                case "POST":
+                    let postCity = JSON.parse(JSON.stringify(urlRequest.query)).q;
+                    favCity(postCity, response);
+                    break;
+            }
+            break;
+        case "/weather/coordinates":
+            let lat = JSON.parse(JSON.stringify(urlRequest.query)).lat;
+            let lon = JSON.parse(JSON.stringify(urlRequest.query)).lon;
+            getByCoords(lat, lon, response);
+            break;
+        case "/favorites":
+            switch (request.method) {
+                case "GET":
+                    connection.query(GET,
+                        function(err, results) {
+                            if (err) console.error(err);
+                            console.log(results);
+                            response.write(JSON.stringify(results));
+                            response.end();
+                        });
+                    break;
+                case "POST":
+                    let newCity = JSON.parse(JSON.stringify(urlRequest.query)).q;
+                    update(newCity, response);
+                    break;
+                default:
+                    let oldCity = JSON.parse(JSON.stringify(urlRequest.query)).q;
+                    connection.query(DELETE, [oldCity],
+                        function(err, results) {
+                            if (err) console.error(err);
+                            response.write(JSON.stringify(results));
+                            response.end();
+                        });
+                    break;
+            }
+            break;
+    }
+}).listen(3000, "localhost",function(){
+    console.log("Сервер начал прослушивание запросов на порту 3000");
+});

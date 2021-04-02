@@ -62,12 +62,12 @@ const fetchByLocation = (latitude, longitude) => {
 }
 // Use only for regular-section
 function fetchByCity (city) {
+    let already = false;
     fetch(`http://localhost:3000/weather/city?q=${city}&units=metric`, {
         "method": "GET",
         "port": 3000,
     })
         .then((res) => {
-            console.log(0);
             if (res.status >= 200 && res.status < 300) {
                 return res.json();
             } else {
@@ -76,7 +76,8 @@ function fetchByCity (city) {
                 if (res.status >= 500 && res.status < 600) {
                     alert("server error, " + res.status);
                 } else if (res.status === 404) {
-                    alert("Not Found");
+                    alert("Not Found, 404");
+                    already = true;
                 } else if (res.status >= 400 && res.status < 500) {
                     alert("client error, " + res.status);
                 } else if (res.status >= 300 && res.status < 400) {
@@ -87,12 +88,7 @@ function fetchByCity (city) {
             }
         })
         .then(function (data) {
-            if (data == 101) {
-                document.getElementById(`li-${city}`).remove();
-                alert("Already exists");
-            } else {
-                setRegular(city, data);
-            }
+            setRegular(city, data);
         })
         .catch ((e) => {
             if (!navigator.onLine) {
@@ -101,7 +97,9 @@ function fetchByCity (city) {
             console.error(e);
             if (document.getElementById(`li-${city}`) !== null) {
                 document.getElementById(`li-${city}`).remove();
-                alert("Already exists");
+                if (!already) {
+                    alert("Already exists");
+                }
             }
         });
 }
@@ -264,6 +262,7 @@ function add(value) {
     }
     // Set close-button for template-container
     document.getElementById(`close-${value}`).onclick = () => {
+        document.getElementById(`close-${value}`).disabled = true;
         deleteCity(value);
         document.getElementById(`li-${value}`).remove();
     }
@@ -285,8 +284,10 @@ document.querySelector(".add-button").onclick = function () {
     const value = document.querySelector(".search-type").value;
     document.querySelector(".search-type").value = "";
 
-    add(value);
-    fetchByCity(value);
+    if (value !== "") {
+        add(value);
+        fetchByCity(value);
+    }
     return false;
 }
 
