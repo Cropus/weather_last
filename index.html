@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Langar&display=swap">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <!--                                HEADER SECTION                                  -->
+    <header class="flex-container">
+        <div class="header-title">Погода здесь</div>
+        <div class="button-wrapper">
+            <button class="header-button">
+                <span class="mobile-ref">&#8634</span>
+                <span class="desktop-ref">Обновить Геолокацию</span>
+            </button>
+        </div>
+    </header>
+    <main class="flex-container">
+        <!--                            CURRENT SECTION                                 -->
+        <section class="container current-container">
+            <h1>Загрузка</h1>
+            <img class="current-image" src="icons/unknown.png" alt="logo">
+            <span class="current-temperature">  ?&degC</span>
+        </section>
+        <section class="container">
+            <ul>
+                <li class="condition">
+                    <div class="feature">Ветер</div><div class="feature-content" id="wind-0">&#8634</div>
+                </li>
+                <li class="condition">
+                    <div class="feature">Облачность</div><div class="feature-content" id="cloud-0">&#8634</div>
+                </li>
+                <li class="condition">
+                    <div class="feature">Давление</div><div class="feature-content" id="pressure-0">&#8634</div>
+                </li>
+                <li class="condition">
+                    <div class="feature">Влажность</div><div class="feature-content" id="humidity-0">&#8634</div>
+                </li>
+                <li class="condition">
+                    <div class="feature">Координаты</div><div class="feature-content" id="cords-0">&#8634</div>
+                </li>
+            </ul>
+        </section>
+
+
+        <!--                            FAVORITE SECTION                                     -->
+        <section class="favorites fav-container">
+            <h2>Избранное</h2>
+            <form class="search">
+                <input class="search-type" type="search" placeholder="Добавить новый город">
+                <button class="button add-button">&#10010</button>
+            </form>
+        </section>
+
+
+        <!--                            REGULAR SECTION                                 -->
+        <ul class="reg-container fav-cities">
+            <template id="template">
+                <li class="fav" id="li">
+                    <h3>Загрузка</h3>
+                    <button class="button close-button" id="close">X</button>
+                    <span class="regular-temperature" id="temp">?&degC</span>
+                    <img class="city-image" id="img" src="./icons/unknown.png" alt="tmp">
+                    <ul class="inner-ul">
+                        <li class="condition">
+                            <div class="feature">Ветер</div><div class="feature-content" id="wind">&#8634</div>
+                        </li>
+                        <li class="condition">
+                            <div class="feature">Облачность</div><div class="feature-content" id="cloud">&#8634</div>
+                        </li>
+                        <li class="condition">
+                            <div class="feature">Давление</div><div class="feature-content" id="pressure">&#8634</div>
+                        </li>
+                        <li class="condition">
+                            <div class="feature">Влажность</div><div class="feature-content" id="humidity">&#8634</div>
+                        </li>
+                        <li class="condition">
+                            <div class="feature">Координаты</div><div class="feature-content" id="cords">&#8634</div>
+                        </li>
+                    </ul>
+                </li>
+            </template>
+        </ul>
+    </main>
+
+    <!--                                SCRIPT SECTION                                 -->
+    <script src="js/location.js"></script>
+</body>
+</html>

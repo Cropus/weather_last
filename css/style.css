@@ -1,0 +1,278 @@
+                                                /* GLOBALS */
+body{
+    margin: 0;
+    width: 100%;
+    font-family: "Langar", cursive;
+    text-align-all: center;
+    font-size: xx-large;
+    background-color: rgba(13, 126, 255, 0.1);
+}
+
+.flex-container{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.fav-container{
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+}
+
+.container{
+    width: 90%;
+}
+
+.reg-container{
+    width: 90%;
+}
+
+
+
+
+
+                                                /* FONTS */
+h1, h2, h3{
+    margin: 0;
+    font-size: 1.5em;
+}
+
+h2{
+    width: 45%;
+    font-size: 1.2em;
+    margin: 0;
+    vertical-align: middle;
+}
+
+h3{
+    display: inline-block;
+    font-size: 1em;
+    vertical-align: middle;
+}
+
+ul{
+    padding-left: 0;
+}
+
+li{
+    list-style-type: none;
+    padding: 0;
+}
+
+
+
+
+
+                                                /* HEADER SECTION */
+header{
+    font-size: 1em;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.header-title{
+    width: 50%;
+    display: inline-block;
+}
+.header-button{
+    height: fit-content;
+    width: fit-content;
+    display: inline-block;
+    text-align: center;
+    font-family: "Langar", cursive;
+    background-color: royalblue;
+    border: darkblue 1px solid;
+    border-radius: 10px;
+    font-size: 30px;
+}
+
+.header-button:hover{
+    color: orange;
+    box-shadow: 0 0 10px darkblue;
+}
+
+.desktop-ref{
+    display: none;
+}
+
+.button{
+    height: 50px;
+    width: 50px;
+    display: inline-block;
+    font-family: "Langar", cursive;
+    background-color: royalblue;
+    border: darkblue 1px solid;
+    border-radius: 50%;
+    box-sizing: border-box;
+}
+
+.button:hover {
+    color: orange;
+    box-shadow: 0 0 10px darkblue;
+}
+
+.button-wrapper{
+    text-align: left;
+    display: inline-block;
+    width: 50%;
+}
+
+
+
+
+
+                                                /* CURRENT SECTION */
+section{
+    margin-top: 50px;
+}
+
+.close-button{
+    float: right;
+    vertical-align: middle;
+    margin: 0;
+}
+
+.current-temperature{
+    float: right;
+    font-size: 3em;
+}
+
+.current-image{
+    display: inline-block;
+    width: 100%;
+    max-width: 240px;
+}
+
+.current-container{
+
+}
+
+.condition{
+    margin: 5px auto;
+    background-color: royalblue;
+}
+
+.feature{
+    height:1.5em;
+    width: 48%;
+    display: inline-block;
+    color: white;
+    padding-left: 0;
+}
+
+.feature-content{
+    height: 1.5em;
+    width: 48%;
+    text-align: right;
+    display: inline-block;
+    color: black;
+    font-size: 0.75em;
+    padding-right: 0;
+}
+
+
+
+
+
+                                                /* FAVORITE SECTION */
+.favorites{
+    width: 90%;
+}
+
+.add-button{
+    margin: 0;
+}
+
+.search{
+    width: 100%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.search-type{
+    font-family: "Langar", cursive;
+    background-color: whitesmoke;
+    border: slategray 1px solid;
+    height: 70px;
+    width: 30%;
+    box-sizing: border-box;
+}
+
+
+
+
+
+                                                /* REGULAR SECTION */
+
+.fav-cities{
+}
+
+.fav {
+    break-inside: avoid;
+}
+
+.regular-temperature{
+    font-size: 1em;
+    margin-left: 5%;
+    vertical-align: middle;
+}
+
+.city-image{
+    width: 1.5em;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+}
+
+
+
+
+
+                                                /* MEDIA REQUEST */
+@media (min-width: 992px){
+    .fav-cities{
+        column-count: 2;
+    }
+    .reg-container {
+        width: 95%;
+    }
+    .container{
+        width: 45%;
+    }
+    header{
+        width: 95%;
+    }
+    .favorites{
+        width: 95%;
+    }
+    .search{
+        width: 55%;
+        margin-right: 0;
+        text-align: right;
+        vertical-align: bottom;
+    }
+    .mobile-ref{
+        display: none;
+    }
+
+    .desktop-ref{
+        display: inline-block;
+        font-size: 16px;
+    }
+
+    .button {
+        height: 40px;
+        width: 40px;
+    }
+    .search-type{
+        height: 50px;
+    }
+
+    h2{
+        display: inline-block;
+    }
+}
+
+
