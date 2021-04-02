@@ -32,7 +32,7 @@ function update (city, response) {
     fetch(encodeURI(`https://community-open-weather-map.p.rapidapi.com/weather?q=${city}&units=metric`), {
         "method": "GET",
         "headers": {
-            "x-rapidapi-key": "d4630f2876msh4a2f7645bc2a036p1f5e46jsnef66441382a4",
+            "x-rapidapi-key": "0a4a55c410mshdf19a50d55f3647p101e49jsn9f35e66d7077",
             "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com"
         }
     })
@@ -78,7 +78,7 @@ function getByCity (city, response) {
     fetch(encodeURI(`https://community-open-weather-map.p.rapidapi.com/weather?q=${city}&units=metric`), {
         "method": "GET",
         "headers": {
-            "x-rapidapi-key": "d4630f2876msh4a2f7645bc2a036p1f5e46jsnef66441382a4",
+            "x-rapidapi-key": "0a4a55c410mshdf19a50d55f3647p101e49jsn9f35e66d7077",
             "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com"
         }
     })
@@ -124,7 +124,7 @@ function favCity (city, response) {
     fetch(encodeURI(`https://community-open-weather-map.p.rapidapi.com/weather?q=${city}&units=metric`), {
         "method": "GET",
         "headers": {
-            "x-rapidapi-key": "d4630f2876msh4a2f7645bc2a036p1f5e46jsnef66441382a4",
+            "x-rapidapi-key": "0a4a55c410mshdf19a50d55f3647p101e49jsn9f35e66d7077",
             "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com"
         }
     })
@@ -151,7 +151,7 @@ const getByCoords = (latitude, longitude, response) => {
     fetch(`https://community-open-weather-map.p.rapidapi.com/forecast?units=metric&lat=${latitude}&lon=${longitude}`, {
         "method": "GET",
         "headers": {
-            "x-rapidapi-key": "d4630f2876msh4a2f7645bc2a036p1f5e46jsnef66441382a4",
+            "x-rapidapi-key": "0a4a55c410mshdf19a50d55f3647p101e49jsn9f35e66d7077",
             "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com"
         }
     })

@@ -75,13 +75,16 @@ function fetchByCity (city) {
                 let error = new Error();
                 if (res.status >= 500 && res.status < 600) {
                     alert("server error, " + res.status);
+                    already = true;
                 } else if (res.status === 404) {
                     alert("Not Found, 404");
                     already = true;
                 } else if (res.status >= 400 && res.status < 500) {
+                    already = true;
                     alert("client error, " + res.status);
                 } else if (res.status >= 300 && res.status < 400) {
                     alert("redirection, " + res.status);
+                    already = true;
                 }
                 error.response = res;
                 throw error;
@@ -93,6 +96,7 @@ function fetchByCity (city) {
         .catch ((e) => {
             if (!navigator.onLine) {
                 alert("Please, check your network connection");
+                already = true;
             }
             console.error(e);
             if (document.getElementById(`li-${city}`) !== null) {
@@ -104,6 +108,7 @@ function fetchByCity (city) {
         });
 }
 function postByCity (city) {
+    let already = false;
     fetch(`http://localhost:3000/weather/city?q=${city}&units=metric`, {
         "method": "POST",
         "port": 3000,
@@ -116,12 +121,16 @@ function postByCity (city) {
                 let error = new Error();
                 if (res.status >= 500 && res.status < 600) {
                     alert("server error, " + res.status);
+                    already = true;
                 } else if (res.status === 404) {
                     alert("Not Found");
+                    already = true;
                 } else if (res.status >= 400 && res.status < 500) {
                     alert("client error, " + res.status);
+                    already = true;
                 } else if (res.status >= 300 && res.status < 400) {
                     alert("redirection, " + res.status);
+                    already = true;
                 }
                 error.response = res;
                 throw error;
@@ -138,11 +147,14 @@ function postByCity (city) {
         .catch ((e) => {
             if (!navigator.onLine) {
                 alert("Please, check your network connection");
+                already = true;
             }
             console.error(e);
             if (document.getElementById(`li-${city}`) !== null) {
                 document.getElementById(`li-${city}`).remove();
-                alert("Already exists");
+                if (!already) {
+                    alert("Already exists");
+                }
             }
         });
 }
